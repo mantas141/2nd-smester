@@ -1,25 +1,25 @@
-import time
 import serial
-import math
-
+import time
 
 ser = serial.Serial()
 
 ser.baudrate = 115200
-ser.port = 'COM4'
+ser.port = 'COM3'
 ser.timeout = 0.5
 ser.open()
 
 print(ser.name)
 
-time.sleep(3)
+time.sleep(1)
 
 while True:
+    # ping
     ser.write(b'@')
-    time.sleep(1.5)
+    time.sleep(1)
 
+    # 1st servo
     ser.write(b'0')
-    ser.write(' '.encode('ascii'))
+    ser.write('A'.encode('ascii'))  #A stands for a value of 97 or smth that is equal to and angular position of the servo
 
     time.sleep(1)
 
@@ -28,11 +28,9 @@ while True:
 
     time.sleep(1)
 
-    ser.write(b'@')
-    time.sleep(1.5)
-
+    # 2nd servo
     ser.write(b'1')
-    ser.write(' '.encode('ascii'))
+    ser.write('A'.encode('ascii'))
 
     time.sleep(1)
 
@@ -40,4 +38,3 @@ while True:
     ser.write('z'.encode('ascii'))
 
     time.sleep(1)
-
